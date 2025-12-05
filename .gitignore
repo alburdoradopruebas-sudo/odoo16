@@ -1,0 +1,31 @@
+# Python 
+__pycache__/
+*.pyc
+*.py[cod]
+*.py.class
+*.so
+.Python
+*.egg-info/
+
+# Odoo
+filestore/
+sessions/
+*.log
+
+# Configuracion VS Code
+.vscode/
+
+# archivos temporales de editores
+*.swp
+*.swo
+
+#macOS
+.DS_Store
+
+#windows
+Thumbs.db
+
+# Entorno virtual
+venv/
+env/
+
