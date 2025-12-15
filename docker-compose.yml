@@ -1,14 +1,15 @@
 services:
-  db: 
+  db:
     image: postgres:14
     container_name: db14
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
       POSTGRES_DB: postgres
-    restart: always    #se inicia como servicio 
+    restart: always # Se inicia como servicio
     volumes:
-      -db14-data:/var/lib/postgrsql/data
+      # CORRECCIÓN: Se eliminó el espacio después de ':'
+      - db14-data:/var/lib/postgresql/data # Ruta corregida a 'postgresql'
     networks:
       - odoo-net
 
@@ -16,23 +17,31 @@ services:
     image: odoo:16
     container_name: odoo16
     depends_on:
-      - db      #el nombre del servicio 
+      - db # El nombre del servicio de la base de datos
     environment:
-      HOST: db
-      USER: admin
-      PASSWORD: admin
+      # Odoo usa variables con prefijo PG, y el host debe ser 'db' (el nombre del servicio)
+      # Nota: Odoo 16 automáticamente busca las variables PG* si no se define un archivo de configuración
+      POSTGRES_HOST: db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      # Se recomienda también incluir el nombre de la base de datos
+      POSTGRES_DB: postgres
+      # Se recomienda configurar el usuario y contraseña del administrador de Odoo
+      # ODOO_ADMIN_PASSWORD: admin
     ports:
-      -"8069:8069"
+      # CORRECCIÓN: Las comillas no son estrictamente necesarias, pero se dejan para consistencia
+      - "8069:8069"
     volumes:
-      - odoo16-data: /var/lib/odoo   #mapeo el directorio de datos de odoo del contenedor 
-      - ./config_odoo: /etc/odoo      #mapeo el directorio de configuracion del contenedor 
-      - ./custom-addons: /mnt/extra-addons  #mapeo el directorio local para personalizaciones
-      - ./logs: /var/log/odoo         #mapeo de los logs de odoo 
+      # CORRECCIÓN: Se eliminó el espacio después de ':' en todas las líneas.
+      - odoo16-data:/var/lib/odoo           # Mapeo del directorio de datos de Odoo
+      - ./config_odoo:/etc/odoo             # Mapeo del directorio de configuración
+      - ./custom-addons:/mnt/extra-addons   # Mapeo del directorio para personalizaciones
+      - ./logs:/var/log/odoo                # Mapeo de los logs de Odoo
     networks:
       - odoo-net
 
 volumes:
-  db14-data: 
+  db14-data:
   odoo16-data:
 
 networks:
