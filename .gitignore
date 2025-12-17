@@ -1,31 +1,31 @@
-# Python 
+# Archivos compilados de Python
 __pycache__/
 *.pyc
 *.py[cod]
-*.py.class
+*$py.class
 *.so
 .Python
 *.egg-info/
 
 # Odoo
+*.log
 filestore/
 sessions/
-*.log
 
-# Configuracion VS Code
+# Configuración de Editores / IDE
 .vscode/
+.idea/
 
-# archivos temporales de editores
+# Archivos temporales de editores
 *.swp
 *.swo
 
-#macOS
+# macOS
 .DS_Store
-
-#windows
+# Windows
 Thumbs.db
 
-# Entorno virtual
+# Entornos virtuales (opcional)
 venv/
 env/
-
+.env

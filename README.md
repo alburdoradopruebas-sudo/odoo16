@@ -1,2 +1,1 @@
-
-Segundo comentario
+# Mi primer proyecto de Odoo
