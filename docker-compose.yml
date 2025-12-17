@@ -21,7 +21,7 @@ services:
       HOST: db         # el nombre del servicio, no del contenedor.
       USER: admin
       PASSWORD: admin
-      ODOO_ADMIN_PASSWORD=admin
+      ODOO_ADMIN_PASSWORD: admin
 
     ports:
       - "8069:8069"   # puerto del HOST : puerto del contenedor
